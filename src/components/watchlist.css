@@ -1,0 +1,61 @@
+.movies-list-container {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+}
+
+.movies-list-not-seen {
+  color: azure;
+  list-style: none;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 207, 17, 0.671);
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.seen-title {
+  text-decoration: line-through;
+text-align: center;
+}
+
+.genre {
+font-size: 10px;
+text-align: center;
+}
+
+.form-radio-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-radio {
+  margin-left: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-radio-text {
+  text-align: left;
+  padding-left: 10px;
+  font-size: 10px;
+  font-weight: 300;
+  color: rgb(230, 227, 222);
+}
