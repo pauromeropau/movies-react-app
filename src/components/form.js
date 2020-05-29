@@ -7,8 +7,11 @@ import uuid from "uuid/v4";
 import "./form.css";
 
 export default () => {
-  const [movie, setMovie] = useState("");
-  const addMovie = useDispatch((movie) => addMovieAction(movie));
+  const [title, setMovie] = useState("");
+  const [genre] = useState([]);
+  
+  const dispatch = useDispatch();
+  const addMovie = (movie) => dispatch(addMovieAction(movie));
 
   const onChange = (event) => {
     setMovie(event.target.value);
@@ -16,10 +19,11 @@ export default () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    if (movie.trim() === "") return;
+    if (title.trim() === "") return;
     addMovie({
       id: uuid(),
-      title: movie,
+      title: title,
+      genre: ['Comedy'],
       seen: false,
     });
     setMovie("");
@@ -37,16 +41,16 @@ export default () => {
             type="text"
             name="title"
             placeholder="Add title"
-            value={movie}
+            value={title}
             onChange={onChange}
           />
           <p className="subtitle2">Genre</p>
           <input
             className="form-input"
             type="text"
-            name="title"
+            name="genre"
             placeholder="Add genre"
-            value={movie}
+            value={[genre]}
             onChange={onChange}
           />
           <button className="submit-btn" type="submit">

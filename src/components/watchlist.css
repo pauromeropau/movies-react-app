@@ -1,23 +1,66 @@
-.movies-list-container {
+.movies-container {
+  margin: 20px 35px;
   background-color: black;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+.search-container {
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
+  border: 3px solid rgba(255, 207, 17, 0.671);
+  border-radius: 5px;
+}
+
+.movies-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  border: 1px solid rgba(255, 207, 17, 0.671);
+  border-radius: 5px;
 }
 
 .movies-list-not-seen {
+  color: azure;
+  list-style: none;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movies-list-seen {
   color: azure;
   list-style: none;
   padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
-.movie {
-  width: 90%;
+.movies {
+  width: 200px;
+}
+
+.seen-movie {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(103, 84, 12, 0.671);
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.not-seen-movie {
+  text-align: center;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,15 +72,15 @@
 
 .seen-title {
   text-decoration: line-through;
-text-align: center;
+  text-align: center;
 }
 
 .genre {
-font-size: 10px;
-text-align: center;
+  font-size: 10px;
+  text-align: center;
 }
 
-.form-radio-container{
+.form-radio-container {
   display: flex;
   flex-direction: row;
   justify-content: center;

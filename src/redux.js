@@ -1,4 +1,5 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
 import uuid from "uuid/v4";
 
 const initialState = {
@@ -7,7 +8,7 @@ const initialState = {
       id: uuid(),
       title: "The Shawshank Redemption",
       genre: ["Romance"],
-      seen: true,
+      seen: false,
     },
     {
       id: uuid(),
@@ -25,7 +26,7 @@ const initialState = {
       id: uuid(),
       title: "Pulp Fiction",
       genre: ["Comedy", "Horror"],
-      seen: false,
+      seen: true,
     },
     {
       id: uuid(),
@@ -39,27 +40,29 @@ const initialState = {
 export const store = createStore(
   reducer,
   initialState,
-  window.devToolsExtension && window.devToolsExtension()
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-function reducer(state, { type, payload }) {
-  switch (type) {
+function reducer(state, action) {
+  switch (action.type) {
     case "ADD_MOVIE":
       return {
         ...state,
-        movies: [...state.movies, payload],
+        movies: [...state.movies, action.payload],
       };
     case "SEEN_MOVIE":
       return {
         ...state,
         movies: state.movies.map((movie) =>
-          movie.id === payload ? { ...movie, seen: !movie.seen } : movie
+          movie.id === action.payload 
+          ? { ...movie, seen: !movie.seen } 
+          : movie
         ),
       };
     case "DELETE_MOVIE":
       return {
         ...state,
-        movies: state.movies.filter((movie) => movie.id !== payload),
+        movies: state.movies.filter((movie) => movie.id !== action.payload),
       };
     default: 
     return state;
@@ -71,12 +74,12 @@ export const addMovieAction = (movie) => ({
   payload: movie
 });
 
-export const seenMovieAction = movieId => ({
+export const toggleSeenMovie = (movieId) => ({
   type: 'SEEN_MOVIE',
   payload: movieId
 });
 
-export const deleteMovieAction = movieId => ({
+export const deleteMovieAction = (movieId) => ({
   type: 'DELETE_MOVIE',
   payload: movieId
 });

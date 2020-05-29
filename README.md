@@ -1,5 +1,24 @@
-### 🍿🎬Movies Watchlist App 🎬🍿
+### 🍿🎬 Movies Watchlist App 🎬🍿
+
 React movies watchlist app
+
+<img src="./scheme.JPG" width=300/>
+
+![](https://media.giphy.com/media/RiQsz7PmlT9mVR0GAD/giphy.gif)
+
+##### ✅ Done 
+- Redux and Hooks to manage the state
+- Add movies by title
+- Sort movies by seen or not
+- Responsive design, mobile first with some UX
+- CSS without any framework, just CSS Flexible Box Layout
+
+##### ❌ To Do
+- Add at least one test for each component
+- Find movies by title or genre
+- Async logic with thunk
+- Routes
+
 
 ##### Available Scripts
 
@@ -67,4 +86,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
