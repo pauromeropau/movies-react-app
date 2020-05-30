@@ -18,21 +18,21 @@ const Watchlist = () => {
         <div className="form-radio-container">
           <div className="form-radio">
             <input type="radio" name="genre" value="genre" id="comedy" />
-            <label className="form-radio-text" for="comedy">
+            <label className="form-radio-text" htmlFor="comedy">
               Comedy
             </label>
           </div>
 
           <div className="form-radio">
             <input type="radio" name="genre" value="genre" id="horror" />
-            <label className="form-radio-text" for="horror">
+            <label className="form-radio-text" htmlFor="horror">
               Horror
             </label>
           </div>
 
           <div className="form-radio">
             <input type="radio" name="genre" value="genre" id="coromancemedy" />
-            <label className="form-radio-text" for="romance">
+            <label className="form-radio-text" htmlFor="romance">
               Romance
             </label>
           </div>

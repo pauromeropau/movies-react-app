@@ -1,5 +1,6 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import { createPromise } from 'redux-promise-middleware'
 import uuid from "uuid/v4";
 
 const initialState = {
@@ -37,49 +38,76 @@ const initialState = {
   ],
 };
 
-export const store = createStore(
-  reducer,
-  initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const composeEnhancers =
+  (typeof window !== "undefined" &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
 
-function reducer(state, action) {
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_MOVIE":
-      return {
+      state = {
         ...state,
         movies: [...state.movies, action.payload],
       };
+      break;
     case "SEEN_MOVIE":
-      return {
+      state = {
         ...state,
         movies: state.movies.map((movie) =>
-          movie.id === action.payload 
-          ? { ...movie, seen: !movie.seen } 
-          : movie
+          movie.id === action.payload ? { ...movie, seen: !movie.seen } : movie
         ),
       };
+      break;
     case "DELETE_MOVIE":
-      return {
+      state = {
         ...state,
         movies: state.movies.filter((movie) => movie.id !== action.payload),
       };
-    default: 
-    return state;
+      break;
+
+      default:
+        return state;
   }
+  return state;
+};
+
+export const store = createStore(
+  reducer,
+  composeEnhancers(applyMiddleware(createPromise(), thunk,)))
+;
+
+
+export function addMovieAction(movie) {
+  return {
+    type: "ADD_MOVIE",
+    payload: new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(movie);
+      }, 3000);
+    }),
+  };
 }
 
-export const addMovieAction = (movie) => ({
-  type : 'ADD_MOVIE', 
-  payload: movie
-});
+export function toggleSeenMovie(movieId) {
+  return {
+    type: "SEEN_MOVIE",
+    payload: new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(movieId);
+      }, 3000);
+    }),
+  };
+}
 
-export const toggleSeenMovie = (movieId) => ({
-  type: 'SEEN_MOVIE',
-  payload: movieId
-});
-
-export const deleteMovieAction = (movieId) => ({
-  type: 'DELETE_MOVIE',
-  payload: movieId
-});
+export function deleteMovieAction(movieId) {
+  return {
+    type: "DELETE_MOVIE",
+    payload: new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(movieId);
+      }, 3000);
+    }),
+  };
+}
